@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TestMapApp</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_location_list">Location list</string>
+    <string name="show_list">Location list</string>
+    <string name="notes">Notes</string>
+    <string name="detail">Detail</string>
+    <string name="distance_placeholder">%d m</string>
+    <string name="message_location_name_dialog">Enter location name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="update_locations_from_server">Update locations from server</string>
+    <string name="default_locations_updated">Default locations updated</string>
+    <string name="error_while_updating_from_server">Error while updating from server</string>
+    <string name="error_while_loading_default_locations">Error while loading default locations</string>
+    <string name="error_while_loading_user_locations">Error while loading user locations</string>
+    <string name="error_add_user_location">Error while adding a new location</string>
+    <string name="error_while_loading_location_details">Error while loading location details</string>
+    <string name="new_location_added">New location added</string>
+    <string name="error_while_loading_locations">Error while loading locations</string>
+</resources>
