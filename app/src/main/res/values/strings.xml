@@ -18,4 +18,5 @@
     <string name="error_while_loading_location_details">Error while loading location details</string>
     <string name="new_location_added">New location added</string>
     <string name="error_while_loading_locations">Error while loading locations</string>
+    <string name="permission_denied_message">This application requires location permission. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'TestMapApp\'</string>
 </resources>

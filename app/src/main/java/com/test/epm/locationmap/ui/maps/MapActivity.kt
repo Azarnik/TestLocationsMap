@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -76,8 +77,7 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
         })
 
         this.googleMap.setOnInfoWindowClickListener { presenter.openLocationDetails(it.tag as BaseLocation) }
-        enableMyLocation()
-        getDeviceLocation()
+        verifyDeviceLocation()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -141,9 +141,9 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
         when (requestCode) {
             LOCATION_PERMISSION_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    enableMyLocation()
+                    verifyDeviceLocation()
                 } else {
-                    // TODO permission denied, show request dialog
+                    showPermissionDeniedAlert()
                 }
             }
         }
@@ -154,12 +154,6 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
 
     override fun showAddLocationDialog(latLng: LatLng) {
         val dialog = LocationNameDialog.newInstance(latLng)
-//        dialog.setOnNameEnteredListener(object : LocationNameDialog.NameEnteredListener {
-//            override fun onNameEntered(name: String, lat: Float, lng: Float) {
-//                presenter.addUserLocation(name, lat, lng)
-//            }
-//
-//        })
         dialog.show(supportFragmentManager, "LocationNameDialog")
     }
 
@@ -194,6 +188,14 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
         markerList.clear()
     }
 
+    private fun showPermissionDeniedAlert() {
+        val alertBuilder = AlertDialog.Builder(this)
+        alertBuilder.setMessage(R.string.permission_denied_message)
+        alertBuilder.setPositiveButton(R.string.ok, { _, _ -> })
+        alertBuilder.setOnDismissListener { verifyDeviceLocation() }
+        alertBuilder.show()
+    }
+
     private fun showMarkerOnMap(locationsList: List<BaseLocation>, markerColor: Float, markerList: MutableList<Marker>) {
         clearMarkers(markerList)
         for (location in locationsList) {
@@ -211,10 +213,16 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
         Snackbar.make(coordinator, message, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun getDeviceLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            val locationResult: Task<Location> = fusedLocationProviderClient.lastLocation
+    private fun verifyDeviceLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    LOCATION_PERMISSION_REQUEST_CODE)
+        } else {
+            googleMap.isMyLocationEnabled = true
+            googleMap.uiSettings.isMyLocationButtonEnabled = true
 
+            val locationResult: Task<Location> = fusedLocationProviderClient.lastLocation
             locationResult.addOnCompleteListener(this, {
                 if (it.isSuccessful && it.result != null) {
                     lastKnownLocation = LatLng(it.result.latitude, it.result.longitude)
@@ -223,17 +231,6 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
 
                 }
             })
-        }
-    }
-
-    private fun enableMyLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE)
-        } else {
-            googleMap.isMyLocationEnabled = true
-            googleMap.uiSettings.isMyLocationButtonEnabled = true
         }
     }
 }
