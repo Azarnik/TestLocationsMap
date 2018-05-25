@@ -81,7 +81,7 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.maps_menu, menu)
+        menuInflater.inflate(R.menu.menu_maps, menu)
         return true
     }
 
@@ -191,7 +191,7 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
     private fun showPermissionDeniedAlert() {
         val alertBuilder = AlertDialog.Builder(this)
         alertBuilder.setMessage(R.string.permission_denied_message)
-        alertBuilder.setPositiveButton(R.string.ok, { _, _ -> })
+        alertBuilder.setPositiveButton(R.string.ok, null)
         alertBuilder.setOnDismissListener { verifyDeviceLocation() }
         alertBuilder.show()
     }

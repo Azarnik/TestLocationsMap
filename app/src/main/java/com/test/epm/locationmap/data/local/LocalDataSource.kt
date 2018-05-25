@@ -15,6 +15,7 @@ interface LocalDataSource {
     fun getDefaultLocationById(id: Long): Single<DefaultLocation>
     fun updateDefaultLocation(defaultLocation: DefaultLocation)
     fun updateUserLocation(userLocation: UserLocation)
+    fun deleteUserLocation(userLocation: UserLocation)
 }
 
 class LocalDataSourceImpl constructor(private val locationsDao: LocationsDao) : LocalDataSource {
@@ -41,5 +42,9 @@ class LocalDataSourceImpl constructor(private val locationsDao: LocationsDao) : 
 
     override fun updateUserLocation(userLocation: UserLocation) {
         locationsDao.updateUserLocation(userLocation)
+    }
+
+    override fun deleteUserLocation(userLocation: UserLocation) {
+       return locationsDao.deleteUserLocation(userLocation)
     }
 }

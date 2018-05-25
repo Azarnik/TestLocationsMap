@@ -2,6 +2,7 @@ package com.test.epm.locationmap.ui.detail
 
 import com.test.epm.locationmap.data.LocationsRepository
 import com.test.epm.locationmap.data.local.entity.BaseLocation
+import com.test.epm.locationmap.data.local.entity.UserLocation
 import com.test.epm.locationmap.di.ActivityScoped
 import com.test.epm.locationmap.utils.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -42,6 +43,19 @@ constructor(
                 .subscribe({
                     view?.showLocationDetail(it)
                     location = it
-                }, { view?.showGetLocationError() }))
+                }, { view?.showGetLocationDetailsError() }))
+    }
+
+    override fun deleteLocation() {
+        if (location is UserLocation) {
+            disposable.add(locationsRepository.removeUserLocation(location as UserLocation)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe({
+                        view?.closeDetailsScreen()
+                    }, { view?.showGetLocationDetailsError() }))
+        } else {
+            view?.showCannotDeleteDefaultLocation()
+        }
     }
 }

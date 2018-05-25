@@ -7,11 +7,15 @@ import com.test.epm.locationmap.ui.BaseView
 interface DetailContract {
     interface View : BaseView {
         fun showLocationDetail(location: BaseLocation)
-        fun showGetLocationError()
+        fun showGetLocationDetailsError()
+        fun closeDetailsScreen()
+        fun showCannotDeleteDefaultLocation()
+        fun showDeleteConfirmationDialog()
     }
 
     interface Presenter : BasePresenter<View> {
         fun updateDescription(note: String)
         fun getLocationDetails()
+        fun deleteLocation()
     }
 }

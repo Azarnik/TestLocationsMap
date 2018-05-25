@@ -57,6 +57,10 @@ internal constructor(
         }
     })
 
+    fun removeUserLocation(userLocation: UserLocation): Completable = Completable.fromAction({
+        localDataSource.deleteUserLocation(userLocation)
+    })
+
     private fun saveDefaultLocations(locationsList: LocationsList): Completable = Completable.fromCallable({
         val lastUpdatedTime = localDataSource.getDefaultLocationUpdatedTime()
         if (lastUpdatedTime < locationsList.updated.time) {

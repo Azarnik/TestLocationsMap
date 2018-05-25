@@ -3,6 +3,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_location_list">Location list</string>
     <string name="show_list">Location list</string>
+    <string name="delete">Delete</string>
     <string name="notes">Notes</string>
     <string name="detail">Detail</string>
     <string name="distance_placeholder">%d m</string>
@@ -16,7 +17,9 @@
     <string name="error_while_loading_user_locations">Error while loading user locations</string>
     <string name="error_add_user_location">Error while adding a new location</string>
     <string name="error_while_loading_location_details">Error while loading location details</string>
+    <string name="cannot_delete_default_location">Cannot delete default location</string>
     <string name="new_location_added">New location added</string>
     <string name="error_while_loading_locations">Error while loading locations</string>
     <string name="permission_denied_message">This application requires location permission. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'TestMapApp\'</string>
+    <string name="delete_location">Delete location?</string>
 </resources>

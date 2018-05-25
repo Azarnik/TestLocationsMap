@@ -49,6 +49,6 @@ class DetailPresenterTest {
 
         detailPresenter.getLocationDetails()
 
-        verify(detailView).showGetLocationError()
+        verify(detailView).showGetLocationDetailsError()
     }
 }

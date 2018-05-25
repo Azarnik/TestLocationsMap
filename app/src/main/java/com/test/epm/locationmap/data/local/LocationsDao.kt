@@ -37,4 +37,8 @@ interface LocationsDao {
 
     @Update
     fun updateUserLocation(userLocation: UserLocation)
+
+    @Delete
+    fun deleteUserLocation(userLocation: UserLocation)
+
 }
