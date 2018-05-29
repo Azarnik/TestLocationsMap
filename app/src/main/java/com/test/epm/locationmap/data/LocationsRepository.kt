@@ -4,7 +4,7 @@ import com.test.epm.locationmap.data.local.LocalDataSource
 import com.test.epm.locationmap.data.local.entity.BaseLocation
 import com.test.epm.locationmap.data.local.entity.DefaultLocation
 import com.test.epm.locationmap.data.local.entity.UserLocation
-import com.test.epm.locationmap.data.remote.RemoteDateSource
+import com.test.epm.locationmap.data.remote.RemoteDataSource
 import com.test.epm.locationmap.data.remote.entity.LocationsList
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class LocationsRepository @Inject
 internal constructor(
-        private val remoteDateSource: RemoteDateSource,
+        private val remoteDateSource: RemoteDataSource,
         private val localDataSource: LocalDataSource) {
 
     fun getDefaultLocations(): Flowable<List<DefaultLocation>> = localDataSource.defaultLocations()

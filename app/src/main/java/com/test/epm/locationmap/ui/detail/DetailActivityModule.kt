@@ -1,8 +1,6 @@
-package com.test.epm.locationmap.di
+package com.test.epm.locationmap.ui.detail
 
-import com.test.epm.locationmap.ui.detail.DetailActivity
-import com.test.epm.locationmap.ui.detail.DetailContract
-import com.test.epm.locationmap.ui.detail.DetailPresenter
+import com.test.epm.locationmap.di.ActivityScoped
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

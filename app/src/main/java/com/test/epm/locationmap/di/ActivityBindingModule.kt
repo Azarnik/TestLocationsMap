@@ -1,8 +1,11 @@
 package com.test.epm.locationmap.di
 
 import com.test.epm.locationmap.ui.detail.DetailActivity
+import com.test.epm.locationmap.ui.detail.DetailActivityModule
 import com.test.epm.locationmap.ui.locationlist.LocationListActivity
+import com.test.epm.locationmap.ui.locationlist.LocationListActivityModule
 import com.test.epm.locationmap.ui.maps.MapActivity
+import com.test.epm.locationmap.ui.maps.MapActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,7 +16,7 @@ abstract class ActivityBindingModule {
     abstract fun mapActivity(): MapActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = [(LocationsListActivityModule::class)])
+    @ContributesAndroidInjector(modules = [(LocationListActivityModule::class)])
     abstract fun locationListActivity(): LocationListActivity
 
     @ActivityScoped

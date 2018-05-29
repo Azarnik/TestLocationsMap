@@ -8,7 +8,7 @@ import com.test.epm.locationmap.data.local.LocalDataSourceImpl
 import com.test.epm.locationmap.data.local.LocationsDao
 import com.test.epm.locationmap.data.local.LocationsDatabase
 import com.test.epm.locationmap.data.remote.LocationsService
-import com.test.epm.locationmap.data.remote.RemoteDateSource
+import com.test.epm.locationmap.data.remote.RemoteDataSource
 import com.test.epm.locationmap.data.remote.RemoteDateSourceImpl
 import dagger.Module
 import dagger.Provides
@@ -38,7 +38,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesRemoteRepos(retrofit: Retrofit): RemoteDateSource = RemoteDateSourceImpl(retrofit.create(LocationsService::class.java))
+    fun providesRemoteRepos(retrofit: Retrofit): RemoteDataSource = RemoteDateSourceImpl(retrofit.create(LocationsService::class.java))
 
     @Provides
     @Singleton

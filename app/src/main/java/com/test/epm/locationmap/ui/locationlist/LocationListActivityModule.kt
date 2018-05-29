@@ -1,15 +1,13 @@
-package com.test.epm.locationmap.di
+package com.test.epm.locationmap.ui.locationlist
 
-import com.test.epm.locationmap.ui.locationlist.LocationListActivity
-import com.test.epm.locationmap.ui.locationlist.LocationListContract
-import com.test.epm.locationmap.ui.locationlist.LocationListPresenter
+import com.test.epm.locationmap.di.ActivityScoped
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
 @Module
-abstract class LocationsListActivityModule {
+abstract class LocationListActivityModule {
     @ActivityScoped
     @Binds
     abstract fun providesLocationListPresenter(presenter: LocationListPresenter): LocationListContract.Presenter
