@@ -109,6 +109,9 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
                 putExtra(LocationListActivity.ARGS_LONGITUDE, lastKnownLocation!!.longitude)
                 startActivity(this)
             }
+        else {
+            showUnableToDetermineLocationError()
+        }
     }
 
     override fun showLocationDetailsUi(id: Long, isDefault: Boolean) {
@@ -155,6 +158,10 @@ class MapActivity : DaggerAppCompatActivity(), OnMapReadyCallback,
     override fun showAddLocationDialog(latLng: LatLng) {
         val dialog = LocationNameDialog.newInstance(latLng)
         dialog.show(supportFragmentManager, "LocationNameDialog")
+    }
+
+    override fun showUnableToDetermineLocationError() {
+        showMessage(getString(R.string.error_unable_to_determine_location))
     }
 
     override fun showUpdateDefaultLocationError() {

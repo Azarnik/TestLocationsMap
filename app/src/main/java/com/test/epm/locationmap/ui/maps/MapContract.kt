@@ -22,6 +22,7 @@ interface MapContract {
         fun showLoadingUserLocationsError()
         fun showAddUserLocationError()
         fun showNewLocationAdded()
+        fun showUnableToDetermineLocationError()
     }
 
     interface Presenter : BasePresenter<View> {

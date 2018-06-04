@@ -17,6 +17,7 @@
     <string name="error_while_loading_user_locations">Error while loading user locations</string>
     <string name="error_add_user_location">Error while adding a new location</string>
     <string name="error_while_loading_location_details">Error while loading location details</string>
+    <string name="error_unable_to_determine_location">Unable to determine location</string>
     <string name="cannot_delete_default_location">Cannot delete default location</string>
     <string name="new_location_added">New location added</string>
     <string name="error_while_loading_locations">Error while loading locations</string>
